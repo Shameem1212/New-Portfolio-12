@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Header from "./components/header";
+import Portfolio from "./pages/portfolio";
+import Contact from "./pages/contact";
+import Resume from "./pages/resume";
+import Footer from "./components/footer";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<AboutUs />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/resume" element={<Resume />} />
+      </Routes>
+      <Footer />
+    </Router>
+  );
 }
 
-export default App
+function AboutUs() {
+  return (
+    <div>
+      <h1>About Me</h1>
+      <p>
+        I am an up and coming DJ that travels all the way from Portland Oregon,
+        traveling to places like Los Angeles, New York, Las Vegas, and more to
+        come. I am currently in a bootcamp for coding to start a different
+        career path.
+      </p>
+    </div>
+  );
+}
+
+export default App;
